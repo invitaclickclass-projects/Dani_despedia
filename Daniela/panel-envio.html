@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Envíos WhatsApp | Despedida de Soltera Daniela</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --color-blush-soft: #F9EFEF;
+      --color-blush-medium: #F2D6D8;
+      --color-rose-gold: #D4A3A8;
+      --color-rose-gold-dark: #B87B82;
+      --color-gold-sparkle: #D4AF37;
+      --color-gold-light: #F4E2BB;
+      --color-cream-bg: #FAF6F1;
+      --color-dark-velvet: #3A2E2B;
+      --color-muted-text: #6E5F5C;
+      --color-whatsapp: #25D366;
+      --color-whatsapp-hover: #1DA851;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-script: 'Great Vibes', cursive;
+      --font-sans: 'Montserrat', sans-serif;
+      --shadow-card: 0 10px 25px rgba(58, 46, 43, 0.06);
+      --shadow-hover: 0 15px 35px rgba(212, 163, 168, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-cream-bg);
+      color: var(--color-dark-velvet);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #3A2E2B 0%, #4A3A37 100%);
+      color: #FFF;
+      padding: 40px 20px 30px;
+      text-align: center;
+      position: relative;
+      border-bottom: 3px solid var(--color-gold-sparkle);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .header-script {
+      font-family: var(--font-script);
+      font-size: 2.8rem;
+      color: var(--color-gold-light);
+      margin-bottom: 5px;
+      line-height: 1;
+    }
+
+    .header-title {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .header-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: -25px auto 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .stat-card {
+      background: #FFF;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .stat-card i {
+      font-size: 1.8rem;
+      color: var(--color-rose-gold-dark);
+      margin-bottom: 8px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-dark-velvet);
+      font-family: var(--font-serif);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--color-muted-text);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Progress Bar */
+    .progress-section {
+      background: #FFF;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 30px;
+      border: 1px solid var(--color-blush-medium);
+    }
+
+    .progress-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .progress-bar-bg {
+      height: 12px;
+      background: var(--color-blush-soft);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-rose-gold) 0%, var(--color-whatsapp) 100%);
+      width: 0%;
+      transition: width 0.5s ease;
+      border-radius: 20px;
+    }
+
+    /* Config Box */
+    .config-card {
+      background: #FFF;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 30px;
+      border-left: 5px solid var(--color-rose-gold-dark);
+    }
+
+    .config-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: var(--color-dark-velvet);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--color-muted-text);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1.5px solid var(--color-blush-medium);
+      border-radius: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--color-dark-velvet);
+      background-color: var(--color-cream-bg);
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--color-rose-gold-dark);
+      background-color: #FFF;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .tags-help {
+      font-size: 0.8rem;
+      color: var(--color-muted-text);
+      margin-top: 5px;
+    }
+
+    .badge-tag {
+      background: var(--color-blush-soft);
+      border: 1px solid var(--color-rose-gold);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--color-dark-velvet);
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-muted-text);
+    }
+
+    .search-box input {
+      padding-left: 42px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      background: #FFF;
+      padding: 5px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-muted-text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--color-rose-gold-dark);
+      color: #FFF;
+    }
+
+    /* Guest Grid */
+    .guest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .guest-card {
+      background: #FFF;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--color-blush-medium);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guest-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .guest-card.sent {
+      border-color: rgba(37, 211, 102, 0.4);
+      background: linear-gradient(180deg, #FFFFFF 0%, #F4FAF6 100%);
+    }
+
+    .guest-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .guest-name {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--color-dark-velvet);
+    }
+
+    .status-badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-badge.pending {
+      background: #FFF3CD;
+      color: #856404;
+    }
+
+    .status-badge.sent {
+      background: #D4EDDA;
+      color: #155724;
+    }
+
+    .status-badge.nophone {
+      background: #F8D7DA;
+      color: #721C24;
+    }
+
+    .guest-phone {
+      font-size: 0.95rem;
+      color: var(--color-muted-text);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .guest-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      flex: 1;
+    }
+
+    .btn-whatsapp {
+      background-color: var(--color-whatsapp);
+      color: #FFF;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      background-color: var(--color-whatsapp-hover);
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-copy {
+      background-color: var(--color-blush-soft);
+      color: var(--color-dark-velvet);
+      border: 1px solid var(--color-rose-gold);
+    }
+
+    .btn-copy:hover {
+      background-color: var(--color-blush-medium);
+    }
+
+    .btn-disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .toggle-sent-btn {
+      background: transparent;
+      border: 1px solid #DDD;
+      color: var(--color-muted-text);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      margin-top: 10px;
+      align-self: flex-start;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-sent-btn:hover {
+      background: var(--color-blush-soft);
+      color: var(--color-dark-velvet);
+    }
+
+    /* Modal / Action Floating Bar */
+    .top-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn-sec {
+      background: #FFF;
+      border: 1px solid var(--color-rose-gold);
+      color: var(--color-dark-velvet);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-sec:hover {
+      background: var(--color-blush-soft);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-title { font-size: 1.7rem; }
+      .header-script { font-size: 2.2rem; }
+      .controls-bar { flex-direction: column; align-items: stretch; }
+      .filter-tabs { overflow-x: auto; justify-content: flex-start; }
+      .guest-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="header">
+    <div class="header-script">Daniela</div>
+    <h1 class="header-title">Panel de Envíos WhatsApp</h1>
+    <p class="header-subtitle">Gestor de distribución de invitaciones virtuales para la Despedida de Soltera</p>
+  </header>
+
+  <main class="container" style="margin-top: 20px;">
+
+    <!-- Action Bar -->
+    <div class="top-actions">
+      <a href="index.html" class="btn-sec" target="_blank">
+        <i class="fas fa-eye"></i> Ver Invitación Web
+      </a>
+      <button id="reset-btn" class="btn-sec">
+        <i class="fas fa-undo"></i> Reiniciar Estatus
+      </button>
+    </div>
+
+    <!-- Stats Grid -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <i class="fas fa-users"></i>
+        <div class="stat-number" id="stat-total">0</div>
+        <div class="stat-label">Total Invitadas</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-mobile-alt"></i>
+        <div class="stat-number" id="stat-valid">0</div>
+        <div class="stat-label">Con Teléfono</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-check-circle" style="color: var(--color-whatsapp);"></i>
+        <div class="stat-number" id="stat-sent">0</div>
+        <div class="stat-label">Enviados</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-hourglass-half" style="color: #E67E22;"></i>
+        <div class="stat-number" id="stat-pending">0</div>
+        <div class="stat-label">Pendientes</div>
+      </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="progress-section">
+      <div class="progress-title">
+        <span>Progreso de Envíos</span>
+        <span id="progress-percentage">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+    </section>
+
+    <!-- Configuration Card -->
+    <section class="config-card">
+      <h3><i class="fas fa-cog"></i> Configuración del Mensaje</h3>
+      
+      <div class="form-group">
+        <label for="invite-url"><i class="fas fa-link"></i> Enlace de la Invitación Web (GitHub Pages)</label>
+        <input type="text" id="invite-url" class="form-control" placeholder="https://tu-usuario.github.io/Dani_despedia/">
+      </div>
+
+      <div class="form-group">
+        <label for="template-text"><i class="fas fa-comment-alt"></i> Plantilla del Mensaje de WhatsApp</label>
+        <textarea id="template-text" class="form-control">¡Hola {nombre}! ✨ Te invito con mucho cariño a mi Despedida de Soltera 💍🌸. Acompáñame a celebrar este día tan especial. Puedes ver todos los detalles y confirmar tu asistencia aquí: {link}</textarea>
+        <div class="tags-help">
+          Variables disponibles: <span class="badge-tag">{nombre}</span> para el nombre de la invitada y <span class="badge-tag">{link}</span> para la URL de la invitación.
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls Bar -->
+    <section class="controls-bar">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre o teléfono...">
+      </div>
+
+      <div class="filter-tabs">
+        <button class="tab-btn active" data-filter="all">Todas</button>
+        <button class="tab-btn" data-filter="pending">Pendientes</button>
+        <button class="tab-btn" data-filter="sent">Enviadas</button>
+        <button class="tab-btn" data-filter="nophone">Sin Teléfono</button>
+      </div>
+    </section>
+
+    <!-- Guests Grid Container -->
+    <section class="guest-grid" id="guest-grid"></section>
+
+  </main>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    // Lista de invitadas (Datos extraídos de la lista oficial)
+    const rawGuests = [
+      { name: "Lila Cortes", phone: "8110735952" },
+      { name: "Marina Tamez Benavides", phone: "8182530258" },
+      { name: "Andrea Herrera Olmos", phone: "8115077782" },
+      { name: "Clara Angelica Chapa Tamez", phone: "8111776803" },
+      { name: "Marina Chapa Tamez", phone: "8112779076" },
+      { name: "Raquel Arellano Perez", phone: "8180747784" },
+      { name: "Paola Tejeda", phone: "8771010158" },
+      { name: "Cynthia Raquel Guerra Arellano", phone: "8112552822" },
+      { name: "Raquel Arellano Chavez", phone: "8126632393" },
+      { name: "Eunice Huitrón", phone: "" },
+      { name: "Claudia Sarahi Guerra Arellano", phone: "8180854886" },
+      { name: "Sandra Arellano Martinez", phone: "8119392285" },
+      { name: "Cynthia Gomez", phone: "8115994791" },
+      { name: "Melissa Arellano Lozano", phone: "8120196950" },
+      { name: "Maria de Jesus Ibañes", phone: "8123866110" },
+      { name: "Claudia Almaguer", phone: "8120000924" },
+      { name: "Mariana Tamez Almaguer", phone: "8184624294" },
+      { name: "Imelda Chavez", phone: "8180175459" },
+      { name: "Katia Mariel Gonzalez Isaac", phone: "8120791244" },
+      { name: "Silvia Monica Isaac Martinez", phone: "8135677041" },
+      { name: "Rita Perez", phone: "6622261537" },
+      { name: "Gabriela Padilla Perez", phone: "6141528428" },
+      { name: "Acela Covarrubias", phone: "8180640330" },
+      { name: "Carmen Itzel Rodriguez Covarrubias", phone: "8114734414" },
+      { name: "Layla Jamilette Salas Tijerina", phone: "8112116693" },
+      { name: "Erika Araujo", phone: "8120152376" },
+      { name: "Melisa Martinez", phone: "8111840629" },
+      { name: "Victoria Monserrat Bolaños Martinez", phone: "8117460609" },
+      { name: "Gabriel Espinosa De Leon", phone: "8126217767" },
+      { name: "Gabriela Guzman", phone: "8110698048" },
+      { name: "Kenya Cadena", phone: "8121748830" },
+      { name: "Lidieth Perales Vargas", phone: "8661640227" },
+      { name: "Ximena Gaytan", phone: "8120239909" },
+      { name: "Alejandra Paola Garcia Guzmán", phone: "8115004922" },
+      { name: "Cynthia Vivar", phone: "8110669780" },
+      { name: "Tia Bertha", phone: "" },
+      { name: "Alicia Rosas Barajas", phone: "2463103198" },
+      { name: "Petra", phone: "8683902014" },
+      { name: "Rebeca", phone: "8682983423" },
+      { name: "Nohemi", phone: "8683054978" },
+      { name: "Beatriz Zamora Rosas", phone: "8119809387" },
+      { name: "Azucena Cruz Zamora", phone: "8116841976" },
+      { name: "Rocio Osy", phone: "9221751696" }
+    ];
+
+    // Detectar URL actual o por defecto
+    const currentOrigin = window.location.href.split('panel-envio.html')[0];
+    const defaultUrl = currentOrigin.endsWith('/') ? currentOrigin : currentOrigin + '/';
+
+    // Cargar datos guardados en LocalStorage
+    let sentStatusMap = JSON.parse(localStorage.getItem('dani_despedida_sent_status')) || {};
+
+    // Cargar URL configurada
+    const inviteUrlInput = document.getElementById('invite-url');
+    inviteUrlInput.value = localStorage.getItem('dani_despedida_url') || defaultUrl;
+
+    const templateTextInput = document.getElementById('template-text');
+    if (localStorage.getItem('dani_despedida_template')) {
+      templateTextInput.value = localStorage.getItem('dani_despedida_template');
+    }
+
+    // Elementos DOM
+    const guestGrid = document.getElementById('guest-grid');
+    const searchInput = document.getElementById('search-input');
+    const filterTabs = document.querySelectorAll('.tab-btn');
+    const resetBtn = document.getElementById('reset-btn');
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    // Formatear Teléfono de México para WhatsApp (+521)
+    function formatPhoneWhatsApp(phone) {
+      let clean = phone.replace(/\D/g, '');
+      if (!clean) return '';
+      if (clean.length === 10) return '52' + clean;
+      if (clean.length === 12 && clean.startsWith('52')) return clean;
+      return '52' + clean;
+    }
+
+    // Formatear Teléfono para mostrar bonito (811) 073-5952
+    function formatPhoneDisplay(phone) {
+      let clean = phone.replace(/\D/g, '');
+      if (clean.length === 10) {
+        return `(${clean.substring(0,3)}) ${clean.substring(3,6)}-${clean.substring(6)}`;
+      }
+      return phone || 'Sin Teléfono registrado';
+    }
+
+    // Generar Mensaje Personalizado
+    function getMessageForGuest(name) {
+      const template = templateTextInput.value;
+      const url = inviteUrlInput.value;
+      return template.replace(/\{nombre\}/g, name).replace(/\{link\}/g, url);
+    }
+
+    // Actualizar Estadísticas y Progreso
+    function updateStats() {
+      const total = rawGuests.length;
+      const valid = rawGuests.filter(g => g.phone && g.phone.trim().length >= 10).length;
+      let sentCount = 0;
+
+      rawGuests.forEach((g, idx) => {
+        if (g.phone && sentStatusMap[idx]) {
+          sentCount++;
+        }
+      });
+
+      const pendingCount = valid - sentCount;
+      const percentage = valid > 0 ? Math.round((sentCount / valid) * 100) : 0;
+
+      document.getElementById('stat-total').innerText = total;
+      document.getElementById('stat-valid').innerText = valid;
+      document.getElementById('stat-sent').innerText = sentCount;
+      document.getElementById('stat-pending').innerText = pendingCount;
+      document.getElementById('progress-percentage').innerText = percentage + '%';
+      document.getElementById('progress-fill').style.width = percentage + '%';
+    }
+
+    // Renderizar la Grid de Invitadas
+    function renderGuests() {
+      guestGrid.innerHTML = '';
+
+      rawGuests.forEach((guest, index) => {
+        const hasPhone = guest.phone && guest.phone.trim().length >= 10;
+        const isSent = !!sentStatusMap[index];
+
+        // Aplicar Filtro de Pestañas
+        if (currentFilter === 'pending' && (!hasPhone || isSent)) return;
+        if (currentFilter === 'sent' && (!hasPhone || !isSent)) return;
+        if (currentFilter === 'nophone' && hasPhone) return;
+
+        // Aplicar Filtro de Búsqueda
+        if (searchQuery) {
+          const matchName = guest.name.toLowerCase().includes(searchQuery.toLowerCase());
+          const matchPhone = guest.phone.includes(searchQuery);
+          if (!matchName && !matchPhone) return;
+        }
+
+        // Crear Card de la Invitada
+        const card = document.createElement('div');
+        card.className = `guest-card ${isSent ? 'sent' : ''}`;
+
+        // Badge de Estatus
+        let badgeHtml = '';
+        if (!hasPhone) {
+          badgeHtml = `<span class="status-badge nophone"><i class="fas fa-exclamation-triangle"></i> Sin Teléfono</span>`;
+        } else if (isSent) {
+          badgeHtml = `<span class="status-badge sent"><i class="fas fa-check"></i> Enviado</span>`;
+        } else {
+          badgeHtml = `<span class="status-badge pending"><i class="fas fa-clock"></i> Pendiente</span>`;
+        }
+
+        const formattedPhone = formatPhoneWhatsApp(guest.phone);
+        const encodedMessage = encodeURIComponent(getMessageForGuest(guest.name));
+        const whatsappUrl = hasPhone ? `https://api.whatsapp.com/send?phone=${formattedPhone}&text=${encodedMessage}` : '#';
+
+        card.innerHTML = `
+          <div>
+            <div class="guest-header">
+              <div class="guest-name">${guest.name}</div>
+              ${badgeHtml}
+            </div>
+            <div class="guest-phone">
+              <i class="fas fa-phone"></i> ${formatPhoneDisplay(guest.phone)}
+            </div>
+          </div>
+          
+          <div>
+            <div class="guest-actions">
+              ${hasPhone ? `
+                <a href="${whatsappUrl}" target="_blank" class="btn btn-whatsapp" onclick="markAsSent(${index})">
+                  <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                </a>
+                <button class="btn btn-copy" onclick="copyMessage('${guest.name}')" title="Copiar mensaje">
+                  <i class="fas fa-copy"></i>
+                </button>
+              ` : `
+                <button class="btn btn-disabled" disabled>
+                  <i class="fas fa-ban"></i> Imposible Enviar
+                </button>
+              `}
+            </div>
+            ${hasPhone ? `
+              <button class="toggle-sent-btn" onclick="toggleSentStatus(${index})">
+                ${isSent ? '<i class="fas fa-times-circle"></i> Marcar como Pendiente' : '<i class="fas fa-check-circle"></i> Marcar como Enviado'}
+              </button>
+            ` : ''}
+          </div>
+        `;
+
+        guestGrid.appendChild(card);
+      });
+
+      if (guestGrid.children.length === 0) {
+        guestGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--color-muted-text);">
+            <i class="fas fa-search" style="font-size: 2.5rem; margin-bottom: 10px;"></i>
+            <p>No se encontraron invitadas con los filtros seleccionados.</p>
+          </div>
+        `;
+      }
+
+      updateStats();
+    }
+
+    // Marcar como Enviado automáticamente al hacer clic en WhatsApp
+    function markAsSent(index) {
+      sentStatusMap[index] = true;
+      localStorage.setItem('dani_despedida_sent_status', JSON.stringify(sentStatusMap));
+      setTimeout(renderGuests, 500);
+    }
+
+    // Alternar estatus manualmente
+    function toggleSentStatus(index) {
+      if (sentStatusMap[index]) {
+        delete sentStatusMap[index];
+      } else {
+        sentStatusMap[index] = true;
+      }
+      localStorage.setItem('dani_despedida_sent_status', JSON.stringify(sentStatusMap));
+      renderGuests();
+    }
+
+    // Copiar mensaje al portapapeles
+    function copyMessage(name) {
+      const msg = getMessageForGuest(name);
+      navigator.clipboard.writeText(msg).then(() => {
+        alert(`Mensaje copiado para ${name}`);
+      }).catch(err => {
+        console.error('Error al copiar: ', err);
+      });
+    }
+
+    // Guardar cambios en plantilla y URL
+    inviteUrlInput.addEventListener('input', (e) => {
+      localStorage.setItem('dani_despedida_url', e.target.value);
+      renderGuests();
+    });
+
+    templateTextInput.addEventListener('input', (e) => {
+      localStorage.setItem('dani_despedida_template', e.target.value);
+      renderGuests();
+    });
+
+    // Búsqueda
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderGuests();
+    });
+
+    // Cambio de Filtros (Pestañas)
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentFilter = tab.dataset.filter;
+        renderGuests();
+      });
+    });
+
+    // Reiniciar estatus
+    resetBtn.addEventListener('click', () => {
+      if (confirm('¿Estás segura de reiniciar el estatus de todos los envíos a pendiente?')) {
+        sentStatusMap = {};
+        localStorage.removeItem('dani_despedida_sent_status');
+        renderGuests();
+      }
+    });
+
+    // Inicializar la aplicación
+    renderGuests();
+  </script>
+</body>
+</html>
