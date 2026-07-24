@@ -491,6 +491,9 @@
 
     <!-- Action Bar -->
     <div class="top-actions">
+      <button id="add-guest-btn" class="btn-sec" style="background: var(--color-rose-gold-dark); color: #FFF;">
+        <i class="fas fa-user-plus"></i> Agregar Invitada
+      </button>
       <a href="index.html" class="btn-sec" target="_blank">
         <i class="fas fa-eye"></i> Ver Invitación Web
       </a>
@@ -575,7 +578,7 @@
   <!-- JavaScript Application Logic -->
   <script>
     // Lista de invitadas (Datos extraídos de la lista oficial)
-    const rawGuests = [
+    const initialGuests = [
       { name: "Lila Cortes", phone: "8110735952" },
       { name: "Marina Tamez Benavides", phone: "8182530258" },
       { name: "Andrea Herrera Olmos", phone: "8115077782" },
@@ -618,8 +621,13 @@
       { name: "Nohemi", phone: "8683054978" },
       { name: "Beatriz Zamora Rosas", phone: "8119809387" },
       { name: "Azucena Cruz Zamora", phone: "8116841976" },
-      { name: "Rocio Osy", phone: "9221751696" }
+      { name: "Rocio Osy", phone: "9221751696" },
+      { name: "Danna Berlanga", phone: "8116024359" }
     ];
+
+    // Cargar invitadas agregadas dinámicamente
+    let customGuests = JSON.parse(localStorage.getItem('dani_despedida_custom_guests')) || [];
+    let rawGuests = [...initialGuests, ...customGuests];
 
     // Detectar URL actual o por defecto
     const currentOrigin = window.location.href.split('panel-envio.html')[0];
@@ -836,14 +844,32 @@
       });
     });
 
-    // Reiniciar estatus
-    resetBtn.addEventListener('click', () => {
-      if (confirm('¿Estás segura de reiniciar el estatus de todos los envíos a pendiente?')) {
-        sentStatusMap = {};
-        localStorage.removeItem('dani_despedida_sent_status');
+    // Botón Agregar Invitada
+    const addGuestBtn = document.getElementById('add-guest-btn');
+    if (addGuestBtn) {
+      addGuestBtn.addEventListener('click', () => {
+        const name = prompt('Nombre completo de la invitada:');
+        if (!name || !name.trim()) return;
+        const phone = prompt('Teléfono de WhatsApp (10 dígitos):') || '';
+        
+        const newGuest = { name: name.trim(), phone: phone.replace(/\D/g, '') };
+        customGuests.push(newGuest);
+        localStorage.setItem('dani_despedida_custom_guests', JSON.stringify(customGuests));
+        rawGuests.push(newGuest);
         renderGuests();
-      }
-    });
+      });
+    }
+
+    // Reiniciar estatus
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (confirm('¿Estás segura de reiniciar el estatus de todos los envíos a pendiente?')) {
+          sentStatusMap = {};
+          localStorage.removeItem('dani_despedida_sent_status');
+          renderGuests();
+        }
+      });
+    }
 
     // Inicializar la aplicación
     renderGuests();
